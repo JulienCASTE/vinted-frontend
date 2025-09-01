@@ -4,27 +4,43 @@ import heroImage from "../assets/banner-wide.jpg";
 import Offer from "../components/Offer";
 import MessageAlert from "../components/MessageAlert";
 
-const Home = () => {
-  const [offers, setOffers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+const Home = ({ offers, setOffers, search, priceSort, priceMin, priceMax }) => {
+  const [isLoadingOffers, setIsLoadingOffers] = useState(true);
 
   useEffect(() => {
-    const fetchOffers = async () => {
+    const fetchOffers = async (searchParams) => {
+      setIsLoadingOffers(true);
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/offers`
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/offers?${searchParams.toString()}`
         );
 
         setOffers(response.data);
+        setIsLoadingOffers(false);
       } catch (error) {
-        console.log(error.response);
+        console.log(error);
       }
-
-      setIsLoading(false);
     };
 
-    fetchOffers();
-  }, []);
+    const filters = {};
+
+    if (search !== "") {
+      filters.title = search;
+    }
+    if (priceSort) {
+      filters.sort = priceSort;
+    }
+    if (priceMin !== null) {
+      filters.priceMin = priceMin;
+    }
+    if (priceMax !== null) {
+      filters.priceMax = priceMax;
+    }
+
+    fetchOffers(new URLSearchParams(filters));
+  }, [search, priceSort, priceMin, priceMax]);
 
   return (
     <>
@@ -43,7 +59,7 @@ const Home = () => {
       <main className="container">
         <MessageAlert message="Les frais de port sont calculés lors du paiement." />
         <section id="articles">
-          {isLoading ? (
+          {isLoadingOffers ? (
             <p className="loading">Chargement...</p>
           ) : (
             offers.map((offer) => {

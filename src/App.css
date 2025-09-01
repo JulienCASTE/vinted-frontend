@@ -24,23 +24,26 @@ button {
 /******************* HEADER ************/
 header {
   position: fixed;
+  z-index: 2;
   top: 0;
-  height: 52px;
   width: 100%;
   background-color: white;
   border-bottom: 1px solid #15191a14;
+  padding: 10px 0;
 }
 
 header > .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 40px;
 }
 
-header > .container > div {
+header .right-buttons {
   display: flex;
   gap: 10px;
 }
+
 header button {
   border: 1px solid var(--vinted-color);
   background-color: transparent;
@@ -61,8 +64,40 @@ header button.red {
   border-color: crimson;
 }
 
+#searchForm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-size: 12px;
+  color: grey;
+}
+
+#searchForm > div {
+  display: flex;
+  gap: 15px;
+}
+
+#searchForm > div label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#searchForm > div label:last-child {
+  flex: 1;
+}
+
+#searchForm input[type="search"] {
+  background-color: #eeeeee;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-size: 15px;
+}
+
 .hero {
-  margin-top: 52px;
+  margin-top: 115px;
   position: relative;
   height: 350px;
   display: flex;
@@ -234,7 +269,7 @@ article button {
 
 #signup {
   max-width: 300px;
-  margin: 100px auto 0 auto;
+  margin: 150px auto 0 auto;
 }
 
 #signup h1 {
@@ -248,7 +283,9 @@ article button {
   flex-direction: column;
 }
 
-input {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   padding: 10px;
   border: none;
   border-bottom: 1px solid lightgrey;
