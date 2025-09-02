@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import heroImage from "../assets/banner-wide.jpg";
 import Offer from "../components/Offer";
 import MessageAlert from "../components/MessageAlert";
-import { BACKEND_URL } from "../const";
 
 const Home = ({ offers, setOffers, search, priceSort, priceMin, priceMax }) => {
   const [isLoadingOffers, setIsLoadingOffers] = useState(true);
@@ -13,7 +12,9 @@ const Home = ({ offers, setOffers, search, priceSort, priceMin, priceMax }) => {
       setIsLoadingOffers(true);
       try {
         const response = await axios.get(
-          `${BACKEND_URL}/offers?${searchParams.toString()}`
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/offers?${searchParams.toString()}`
         );
 
         setOffers(response.data);

@@ -5,7 +5,6 @@ import {
 } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import axios from "axios";
-import { BACKEND_URL } from "../const";
 
 const CheckoutForm = ({
   productName,
@@ -37,10 +36,13 @@ const CheckoutForm = ({
       return;
     }
 
-    const response = await axios.post(`${BACKEND_URL}/payment`, {
-      productName: productName,
-      amountInCents: Math.round(totalAmount * 100),
-    });
+    const response = await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/payment`,
+      {
+        productName: productName,
+        amountInCents: Math.round(totalAmount * 100),
+      }
+    );
 
     const clientSecret = response.data.client_secret;
 

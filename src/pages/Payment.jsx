@@ -3,9 +3,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/CheckoutForm";
 import { useEffect, useState } from "react";
-import { STRIPE_PUBLIC_KEY } from "../const";
 
-const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 const INSURANCE_FEE_IN_CENTS = 1_00;
 const DELIVERY_FEE_IN_CENTS = 2_00;
 
