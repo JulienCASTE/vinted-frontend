@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import PriceRange from "./PriceRange";
 
@@ -13,6 +13,7 @@ const Header = ({
   priceMax,
   setPriceMax,
 }) => {
+  const location = useLocation();
   const navigate = useNavigate();
   const authToken = Cookies.get("token");
 
@@ -30,36 +31,38 @@ const Header = ({
         <Link to="/">
           <img src={logo} alt="Vinted" />
         </Link>
-        <div id="searchForm">
-          <input
-            type="search"
-            name="search"
-            placeholder="Recherche des articles"
-            value={search}
-            onChange={handleSearchChange}
-          />
-          <div>
-            <label htmlFor="priceSort">
-              Trier par prix :
-              <input
-                id="priceSort"
-                type="checkbox"
-                name="priceSort"
-                checked={priceSort === "price-desc"}
-                onChange={handlePriceSortChange}
-              />
-            </label>
-            <label>
-              Prix entre :
-              <PriceRange
-                priceMin={priceMin}
-                setPriceMin={setPriceMin}
-                priceMax={priceMax}
-                setPriceMax={setPriceMax}
-              />
-            </label>
+        {location.pathname === "/" && (
+          <div id="searchForm">
+            <input
+              type="search"
+              name="search"
+              placeholder="Recherche des articles"
+              value={search}
+              onChange={handleSearchChange}
+            />
+            <div>
+              <label htmlFor="priceSort">
+                Trier par prix :
+                <input
+                  id="priceSort"
+                  type="checkbox"
+                  name="priceSort"
+                  checked={priceSort === "price-desc"}
+                  onChange={handlePriceSortChange}
+                />
+              </label>
+              <label>
+                Prix entre :
+                <PriceRange
+                  priceMin={priceMin}
+                  setPriceMin={setPriceMin}
+                  priceMax={priceMax}
+                  setPriceMax={setPriceMax}
+                />
+              </label>
+            </div>
           </div>
-        </div>
+        )}
         <div className="right-buttons">
           {authToken ? (
             <button
@@ -82,7 +85,11 @@ const Header = ({
               </button>
             </>
           )}
-          <button type="button" className="dark">
+          <button
+            type="button"
+            className="dark"
+            onClick={() => navigate("/publish")}
+          >
             Vends tes articles
           </button>
         </div>

@@ -45,7 +45,10 @@ const Signup = () => {
 
       if (201 === response.status && response.data.token) {
         Cookies.set("token", response.data.token, { expires: 7 });
-        navigate("/");
+
+        const fromUrl = Cookies.get("fromUrl");
+        Cookies.remove("fromUrl");
+        navigate(fromUrl ?? "/");
 
         return;
       } else {

@@ -9,16 +9,22 @@
 body {
   font-family: V-Inter, V_INTER, V_INTER Fallback, Helvetica Neue,
     Helvetica-Neue, Arial, sans-serif;
+  background-color: #eeeeee;
 }
 
 .container {
   width: 1280px;
   padding: 0 20px;
   margin: 0 auto;
+  max-width: 100%;
 }
 
 button {
   cursor: pointer;
+}
+
+strong {
+  font-weight: bold;
 }
 
 /******************* HEADER ************/
@@ -194,7 +200,7 @@ header button.red {
 }
 
 article {
-  margin-top: 52px;
+  margin-top: 100px;
   padding: 15px 0;
   display: flex;
   justify-content: space-between;
@@ -205,6 +211,7 @@ article {
 article > img {
   border-radius: 5px;
   flex: 1;
+  max-width: calc(66% - 45px);
 }
 
 article > div {
@@ -212,6 +219,7 @@ article > div {
   border: 1px solid #15191a1f;
   padding: 15px;
   width: 33%;
+  background-color: white;
 }
 
 article h1 {
@@ -269,7 +277,7 @@ article button {
 
 #signup {
   max-width: 300px;
-  margin: 150px auto 0 auto;
+  margin: 100px auto 0 auto;
 }
 
 #signup h1 {
@@ -281,11 +289,15 @@ article button {
 #signup form {
   display: flex;
   flex-direction: column;
+  background-color: white;
+  padding: 15px;
 }
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="number"],
+textarea {
   padding: 10px;
   border: none;
   border-bottom: 1px solid lightgrey;
@@ -331,4 +343,131 @@ input[type="submit"] {
   text-align: center;
   font-size: 13px;
   text-decoration: none;
+}
+
+#publish {
+  margin-top: 100px;
+}
+
+#publish h1 {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+#publish form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#publish fieldset {
+  box-shadow: 0px 0px 1px 1px #15191a1f;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: white;
+}
+
+#publish fieldset .input-form {
+  padding: 15px;
+  display: flex;
+}
+
+#publish fieldset .input-form:not(:last-child) {
+  border-bottom: 1px solid lightgrey;
+}
+
+#publish fieldset .input-form > * {
+  flex: 1;
+}
+
+.dropzone {
+  position: relative;
+  margin: 15px;
+  padding: 15px;
+  border: 2px dashed lightgrey;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.dropzone .btn-ghost {
+  border: 2px solid var(--vinted-color);
+  color: var(--vinted-color);
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.dropzone aside img {
+  max-width: 100%;
+  max-height: 100px;
+}
+
+#publish .submit-block {
+  text-align: right;
+  margin: 15px 0;
+}
+
+#publish .submit-block button {
+  background-color: var(--vinted-color);
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+}
+
+#payment {
+  margin-top: 100px;
+}
+
+.payment-block {
+  padding: 15px;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 0 auto 15px auto;
+  max-width: 500px;
+}
+
+.payment-block h1 {
+  color: lightgrey;
+  margin-bottom: 40px;
+}
+
+.payment-block .amounts {
+  margin: 20px 0;
+  color: grey;
+  line-height: 30px;
+}
+
+.payment-block .amounts li {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.payment-block .amounts.total-amount {
+  font-weight: bold;
+  color: black;
+  border-top: 1px solid lightgrey;
+  padding: 20px 0;
+}
+
+.payment-block p {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.payment-block button {
+  width: 100%;
+  margin-top: 15px;
+  background-color: #02c06d;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
 }

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Offer = () => {
+  const navigate = useNavigate();
   const [offer, setOffer] = useState(null);
   const [productDetails, setProductDetails] = useState({});
   const { id } = useParams();
@@ -99,7 +100,12 @@ const Offer = () => {
               )}
             </div>
             <p>{offer.product_description}</p>
-            <button type="button">Acheter</button>
+            <button
+              type="button"
+              onClick={() => navigate("/payment", { state: { offer: offer } })}
+            >
+              Acheter
+            </button>
           </div>
         </article>
       ) : (

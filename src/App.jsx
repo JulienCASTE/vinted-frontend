@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { useState } from "react";
+import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -44,6 +46,8 @@ function App() {
         <Route path="/offers/:id" element={<Offer />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/publish" element={<Publish />} />
+        <Route path="/payment" element={<Payment />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </Router>
