@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Dropzone from "../components/Dropzone";
+import { BACKEND_URL } from "../const";
 
 const Publish = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Publish = () => {
       formData.append("exchangeAccepted", exchangeAccepted);
 
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/offers/publish`,
+        `${BACKEND_URL}/offers/publish`,
         formData,
         {
           headers: {

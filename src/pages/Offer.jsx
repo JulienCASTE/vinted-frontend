@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { BACKEND_URL } from "../const";
 
 const Offer = () => {
   const navigate = useNavigate();
@@ -27,9 +28,7 @@ const Offer = () => {
   useEffect(() => {
     const fetchOffer = async () => {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/offers/${id}`
-        );
+        const response = await axios.get(`${BACKEND_URL}/offers/${id}`);
 
         setOffer(response.data);
       } catch (error) {

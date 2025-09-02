@@ -2,6 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../const";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,13 +24,10 @@ const Login = () => {
 
     try {
       setErrorMessage("");
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/user/login`,
-        {
-          email: email,
-          password: password,
-        }
-      );
+      const response = await axios.post(`${BACKEND_URL}/user/login`, {
+        email: email,
+        password: password,
+      });
 
       if (200 === response.status && response.data.token) {
         Cookies.set("token", response.data.token, { expires: 7 });
